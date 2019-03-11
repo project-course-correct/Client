@@ -1,11 +1,14 @@
 import React from 'react';
+import Prisoner from './Prisoner';
 
-export class PrisonersList {
-    render() {
-        return (
-            <div className="prisoner-list">
-                
-            </div>
-        )
-    }
+export default function PrisonersList({ prisonersList }) {
+    return (
+        <div className="prisoners-list">
+            {
+                prisonersList.map(prisoner => (
+                    <Prisoner prisoner={prisoner}/>
+                ))
+            }
+        </div>
+    )
 }

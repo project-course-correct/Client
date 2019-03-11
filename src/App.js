@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
 
 import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
+import PrisonersList from './components/PrisonersList';
 
 
-class App extends Component {
+
+export class App extends Component {
   render() {
     return (
       <div className="App">
           <NavBar />
 
-          <Route path="/prisons" component={Prisons} />
+          <Route exact path="/prisons" component={Prisons} />
+          {
+            this.props.prisons.map(prison => (
+              <Route path={`/prisons/${prison.name}`} render={pr => <PrisonersList prisonersList={prison.prisoners} {...pr} />}/>
+            ))
+          }
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+      prisons: state.prisons
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(App)); 

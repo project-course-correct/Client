@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import PrisonersList from '../components/PrisonersList';
 
 export class Prisoners extends React.Component {
     render() {
@@ -7,7 +8,9 @@ export class Prisoners extends React.Component {
             <div className="prisoners-container">
                 {
                     this.props.prisons.map(prison => {
-                        <Route path={`/prisons/${prison.name}`} render={/* to fill */} />
+                        <Route path={`/prisons/${prison.name}`} render={() => (
+                            <PrisonersList prisonersList={prison.prisoners} />
+                        )} />
                     })
                 }
             </div>

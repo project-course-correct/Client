@@ -1,38 +1,19 @@
 import React from 'react';
-import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
+import { NavLink } from 'react-router-dom';
 
-import { getPrisons } from '../states/actionCreators';
 import Prison from './Prison';
 
-export class PrisonsList extends React.Component {
-    componentDidMount() {
-        this.props.getPrisons();
-    }
-
-    render() {
-        return (
-            <div className="prisons-list">
-                {
-                    this.props.prisons.map(prison => (
+export default function PrisonsList ({ prisons }) {
+    return (
+        <div className="prisons-list">
+            {
+                prisons.map(prison => (
+                    <NavLink key={prison.id} to={`/prisons/${prison.name}`}>
                         <Prison prison={prison}/>
-                    ))
-                }
-            </div>
-        )
-    }
+                    </NavLink>
+                ))
+            }
+        </div>
+    )
 }
 
-function mapStateToProps(state) {
-    return {
-        prisons: state.prisons
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getPrisons,
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PrisonsList);
