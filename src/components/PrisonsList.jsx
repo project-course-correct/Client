@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import { getPrisons } from '../states/actionCreators';
+import { getPrisons } from '../states/actions/actionCreators';
 import Prison from './Prison';
 
 export class PrisonsList extends React.Component {
@@ -15,13 +14,19 @@ export class PrisonsList extends React.Component {
             <div className="prisons-list">
                 {
                     this.props.prisons.map(prison => (
-                        <Prison prison={prison}/>
+                        <Prison
+                            prison={prison}
+                            name={prison.name}
+                            id={prison.id}
+                            zipcode={prison.zipcode}
+                            key={prison.zipcode}
+                        />
                     ))
                 }
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 function mapStateToProps(state) {
     return {

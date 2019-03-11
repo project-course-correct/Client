@@ -1,0 +1,17 @@
+export const SPINNER_ON = "SPINNER_ON";
+export const SPINNER_OFF = "SPINNER_OFF";
+export const GET_PRISONS = "GET_PRISONS";
+export const GET_SUCCESS = 'GET_SUCCESS';
+export const GET_FAILURE = 'GET_FAILURE';
+export const FETCH_PRISONERS = 'FETCH_PRISONERS';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const FETCH_FAILURE = 'FETCH_FAILURE';
+export const ADD_PRISONER = "ADD_PRISONER";
+export const ADD_SUCCESS = 'ADD_SUCCESS';
+export const DELETE_PRISONER = "DELETE_PRISONER";
+export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const EDIT_PRISONER = "DELETE_PRISONER";
+export const EDIT_SUCCESS = 'EDIT_SUCCESS';
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const ERROR = "ERROR";

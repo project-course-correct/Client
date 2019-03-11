@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function Prison({ prison }) {
-    return (
-        <div>{prison.name}</div>
-    )
-}
+const Prison = ({ prison }) => (
+    <div>{prison.name}</div>
+);
+
+export default Prison;
