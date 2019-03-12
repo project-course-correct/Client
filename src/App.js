@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
 import Prisoners from './views/Prisoners';
 import PrisonAdminform from './views/PrisonAdminForm';
-import { getPrisons } from './states/actionCreators';
+import { getPrisons, selectPrisonerId } from './states/actionCreators';
 
 
 
@@ -34,6 +34,7 @@ export class App extends Component {
                 {...pr} 
                 prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
                 selectedPrisonerId={this.props.selectedPrisonerId}
+                selectPrisonerId={this.props.selectPrisonerId}
               />
             } 
           />
@@ -53,6 +54,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
       getPrisons,
+      selectPrisonerId,
   }, dispatch);
 }
 
