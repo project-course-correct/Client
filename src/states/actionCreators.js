@@ -44,3 +44,10 @@ export function selectPrisonerId(id) {
         payload: id,
     }
 }
+
+export function addPrisoner(prisoner) {
+    return {
+        type: types.ADD_PRISONER,
+        payload: prisoner,
+    }
+}

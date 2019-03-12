@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
 import Prisoners from './views/Prisoners';
 import PrisonAdminform from './views/PrisonAdminForm';
-import { getPrisons, selectPrisonerId } from './states/actionCreators';
+import { getPrisons, selectPrisonerId, addPrisoner } from './states/actionCreators';
 
 
 
@@ -24,7 +24,11 @@ export class App extends Component {
           <Route exact path="/prisons" component={Prisons} />
           {
             this.props.prisons.map(prison => (
-              <Route key={prison.id} path={`/prisons/${prison.name}`} render={pr => <Prisoners prison={prison} {...pr} />}/>
+              <Route 
+                key={prison.id} 
+                path={`/prisons/${prison.name}`} 
+                render={pr => <Prisoners prison={prison} {...pr} />}
+              />
             ))
           }
           <Route 
@@ -35,6 +39,7 @@ export class App extends Component {
                 prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
                 selectedPrisonerId={this.props.selectedPrisonerId}
                 selectPrisonerId={this.props.selectPrisonerId}
+                addPrisoner={this.props.addPrisoner}
               />
             } 
           />
@@ -55,6 +60,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
       getPrisons,
       selectPrisonerId,
+      addPrisoner,
   }, dispatch);
 }
 
