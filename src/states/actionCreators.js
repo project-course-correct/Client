@@ -31,4 +31,16 @@ export function logOut() {
     }
 }
 
-  
+export function logIn(id) {
+    return {
+        type: types.LOGIN,
+        payload: id,
+    }
+}
+
+export function selectPrisonerId(id) {
+    return {
+        type: types.SELECT_PRISONER_ID,
+        payload: id,
+    }
+}

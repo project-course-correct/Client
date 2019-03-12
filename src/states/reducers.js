@@ -35,12 +35,23 @@ export function error(state = null, action) {
     }
 }
 
-export function authed(state = false, action) {
+export function authedId(state = "", action) {
     switch (action.type) {
         case types.LOGIN:
-            return true;
+            return action.payload;
         case types.LOGOUT:
-            return false;
+            return "";
+        default:
+            return state;
+    }
+}
+
+export function selectedPrisonerId(state = "", action) {
+    switch (action.type) {
+        case types.SELECT_PRISONER_ID:
+            return action.payload;
+        case types.LOGOUT:
+            return "";
         default:
             return state;
     }

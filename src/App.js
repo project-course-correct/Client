@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
-import PrisonersList from './components/PrisonersList';
+import Prisoners from './views/Prisoners';
 
 
 
@@ -17,7 +17,7 @@ export class App extends Component {
           <Route exact path="/prisons" component={Prisons} />
           {
             this.props.prisons.map(prison => (
-              <Route path={`/prisons/${prison.name}`} render={pr => <PrisonersList prisonersList={prison.prisoners} {...pr} />}/>
+              <Route key={prison.id} path={`/prisons/${prison.name}`} render={pr => <Prisoners prison={prison} {...pr} />}/>
             ))
           }
       </div>

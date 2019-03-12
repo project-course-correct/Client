@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
     prisons: reducers.prisons,
     loading: reducers.loading,
     error: reducers.error,
-    authed: reducers.authed
+    authedId: reducers.authedId,
+    selectedPrisonerId: reducers.selectedPrisonerId,
   });
 
 const store = createStore(

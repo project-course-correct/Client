@@ -7,3 +7,4 @@ export const EDIT_PRISONER = "DELETE_PRISONER";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const ERROR = "ERROR";
+export const SELECT_PRISONER_ID = "SELECT_PRISONER_ID";

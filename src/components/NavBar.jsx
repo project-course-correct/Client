@@ -6,6 +6,9 @@ export default class NavBar extends React.Component {
         return (
             <nav>
                 <NavLink to="/prisons">Prisons</NavLink>
+                <NavLink to={"/"}>My Prison</NavLink>
+                <NavLink to={"/"}>Update Prisoners</NavLink>
+                <NavLink to="/">LogOut</NavLink>
             </nav>
         )
     }
