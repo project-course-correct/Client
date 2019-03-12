@@ -1,5 +1,4 @@
 import React from 'react';
-import Prisoner from '../components/Prisoner';
 
 export default class PrisonAdminform extends React.Component {
     constructor(props) {
@@ -9,12 +8,13 @@ export default class PrisonAdminform extends React.Component {
     skillRef = React.createRef(); 
 
     render() {
+        console.log(this.props.prison)
         return (
             <form>
-                <select name="prisoners" value={} onChange={}>
+                <select name="prisoners" value={this.props.selectedPrisonerId} onChange={() =>{}}>
                     <option value="" >Choose a prisoner</option>
                     {
-                        prison.prisoners.map(prisoner => 
+                        this.props.prison.prisoners.map(prisoner => 
                             <option key={prisoner.id} value={prisoner.id}>{prisoner.name}</option>   
                         )
                     }

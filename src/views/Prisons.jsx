@@ -1,16 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
 
-
-import { getPrisons } from '../states/actionCreators';
 import PrisonsList from '../components/PrisonsList';
 
 export class Prisons extends React.Component {
-    componentDidMount() {
-        this.props.getPrisons();
-    }
-    
     render() {
         return (
             <div className="prisons-container">
@@ -26,10 +19,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getPrisons,
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Prisons);
+export default connect(mapStateToProps)(Prisons);

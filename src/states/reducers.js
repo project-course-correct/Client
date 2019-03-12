@@ -35,7 +35,7 @@ export function error(state = null, action) {
     }
 }
 
-export function authedId(state = "", action) {
+export function authedId(state = "1", action) {
     switch (action.type) {
         case types.LOGIN:
             return action.payload;

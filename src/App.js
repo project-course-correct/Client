@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 
 import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
 import Prisoners from './views/Prisoners';
+import PrisonAdminform from './views/PrisonAdminForm';
+import { getPrisons } from './states/actionCreators';
 
 
 
 export class App extends Component {
+  componentDidMount() {
+    this.props.getPrisons();
+  }
+
   render() {
     return (
       <div className="App">
@@ -20,6 +27,16 @@ export class App extends Component {
               <Route key={prison.id} path={`/prisons/${prison.name}`} render={pr => <Prisoners prison={prison} {...pr} />}/>
             ))
           }
+          <Route 
+            path="/prisoner_form" 
+            render={pr => 
+              <PrisonAdminform 
+                {...pr} 
+                prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
+                selectedPrisonerId={this.props.selectedPrisonerId}
+              />
+            } 
+          />
       </div>
     );
   }
@@ -27,8 +44,16 @@ export class App extends Component {
 
 function mapStateToProps(state) {
   return {
-      prisons: state.prisons
+      prisons: state.prisons,
+      authedId: state.authedId,
+      selectedPrisonerId: state.selectedPrisonerId,
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App)); 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+      getPrisons,
+  }, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App)); 

@@ -6,7 +6,7 @@ export default function PrisonersList({ prisonersList }) {
         <div className="prisoners-list">
             {
                 prisonersList.map(prisoner => (
-                    <Prisoner prisoner={prisoner}/>
+                    <Prisoner key={prisoner.id} prisoner={prisoner}/>
                 ))
             }
         </div>
