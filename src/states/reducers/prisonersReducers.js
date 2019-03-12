@@ -3,6 +3,7 @@ import * as types from '../actions/actionTypes';
 const initState = {
     prisoners: [],
     fetching: false,
+    adding: false,
     editing: false,
     deleting: false,
     error: null
@@ -14,7 +15,7 @@ export function prisonersReducers(state = initState, action) {
             return {
                 ...state,
                 fetching: true
-            }
+            };
         case types.FETCH_SUCCESS:
             return {
                 ...state,
@@ -28,9 +29,26 @@ export function prisonersReducers(state = initState, action) {
                 ...state,
                 error: action.payload,
                 fetching: false
-            }
+            };
         case types.ADD_PRISONER:
-            return //todo;
+            return {
+                ...state,
+                adding: true
+            };
+        case types.ADD_SUCCESS:
+            return {
+                ...state,
+                prisoners: [
+                    ...action.payload
+                ],
+                adding: false
+            };
+        case types.ADD_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                adding: false
+            }
         case types.DELETE_PRISONER:
             return //todo;
         case types.EDIT_PRISONER:

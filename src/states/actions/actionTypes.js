@@ -8,6 +8,7 @@ export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 export const ADD_PRISONER = "ADD_PRISONER";
 export const ADD_SUCCESS = 'ADD_SUCCESS';
+export const ADD_FAILURE = 'ADD_FAILURE';
 export const DELETE_PRISONER = "DELETE_PRISONER";
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
 export const EDIT_PRISONER = "DELETE_PRISONER";

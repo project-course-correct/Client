@@ -29,6 +29,17 @@ export const fetchPrisoners = () => async dispatch => {
     }
 }
 
+export const addPrisoner = () => dispatch => {
+    dispatch({ type: types.ADD_PRISONER })
+    axios
+        .post(`http://demo4752238.mockable.io/prisons/prisoners`)
+        .then(res => {
+            console.log(res.data);
+            dispatch({ type: types.ADD_SUCCESS, payload: res.data.results });
+        })
+        .catch(err => dispatch({ type: types.ERROR, payload: err }));
+};
+
 // export const getPrisons = () => dispatch => {
 //     dispatch(spinnerOn());
 //     axios.get("http://demo4752238.mockable.io/prisons")
