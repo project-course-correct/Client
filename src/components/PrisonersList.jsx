@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import PT from 'prop-types';
 
 
 import Prisoner from './Prisoner';
@@ -16,6 +17,15 @@ export class PrisonersList extends React.Component{
             </div>
         )
     }
+}
+
+PrisonersList.propTypes = {
+    prisoners: PT.arrayOf(PT.shape({
+        id: PT.number.isRequired,
+        name: PT.string.isRequired,
+        id_number: PT.number.isRequired,
+        prison_id: PT.number.isRequired,
+    }).isRequired).isRequired,
 }
 
 function mapStateToProps(state) {

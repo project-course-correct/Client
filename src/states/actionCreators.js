@@ -19,12 +19,12 @@ export const getPrisonersByPrisonId = id => dispatch => {
     axios.get(`http://localhost:5000/api/prisons/${id}/prisoners`)
         .then(res => {
             dispatch({ type: types.GET_PRISONERS_BY_PRISON_ID, payload: res.data });
+            dispatch(spinnerOff());
         })
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message });
             console.log(err.message);
         })
-        .finally(dispatch(spinnerOff()));
 }
 
 export const addPrisoner = (prisoner, id) => dispatch => {

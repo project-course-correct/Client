@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+import PT from 'prop-types';
 
 import { getPrisonersByPrisonId } from '../states/actionCreators';
 
@@ -26,6 +27,15 @@ export class  PrisonsList extends React.Component {
             </div>
         )
     }
+}
+
+PrisonsList.propTypes = {
+    prisons: PT.arrayOf(PT.shape({
+        id: PT.number.isRequired,
+        location: PT.string.isRequired,
+        population: PT.number.isRequired,
+        zipcode: PT.number.isRequired,
+    }).isRequired).isRequired,
 }
 
 function mapStateToProps(state) {

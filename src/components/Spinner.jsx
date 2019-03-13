@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PT from 'prop-types';
 
 const StyledSpinner = styled.div`
   .spinner {
@@ -20,6 +21,10 @@ export class Spinner extends React.Component {
       </StyledSpinner>
     );
   }
+}
+
+Spinner.propTypes = {
+  loading: PT.bool.isRequired,
 }
 
 

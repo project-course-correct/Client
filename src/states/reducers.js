@@ -46,7 +46,7 @@ export function error(state = null, action) {
     }
 }
 
-export function authedId(state = "1", action) {
+export function authedId(state = "", action) {
     switch (action.type) {
         case types.LOGIN:
             return action.payload;
@@ -57,7 +57,7 @@ export function authedId(state = "1", action) {
     }
 }
 
-export function selectedPrisonerId(state = "", action) {
+export function selectedPrisonerId(state = null, action) {
     switch (action.type) {
         case types.SELECT_PRISONER_ID:
             return action.payload;

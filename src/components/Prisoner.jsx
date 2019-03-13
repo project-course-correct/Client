@@ -1,4 +1,5 @@
 import React from 'react';
+import PT from 'prop-types';
 
 export default function Prisoner({ prisoner }) {
     return (
@@ -7,4 +8,13 @@ export default function Prisoner({ prisoner }) {
             <p><span>Skills:</span>{prisoner.skills}</p>
         </div>
     )
+}
+
+Prisoner.propTypes = {
+    prisoner : PT.shape({
+        id: PT.number.isRequired,
+        name: PT.string.isRequired,
+        id_number: PT.number.isRequired,
+        prison_id: PT.number.isRequired,
+    }).isRequired,
 }

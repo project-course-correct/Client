@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import PT from 'prop-types';
 
-export default class PrisonAdminform extends React.Component {
+import { selectPrisonerId, addPrisoner } from '../states/actionCreators'
+
+export class PrisonAdminForm extends React.Component {
     nameRef = React.createRef();
     skillRef = React.createRef(); 
 
@@ -31,7 +36,7 @@ export default class PrisonAdminform extends React.Component {
                 >
                     <option value="" >Choose a prisoner</option>
                     {
-                        this.props.prison.prisoners.map(prisoner => 
+                        this.props.prisoners.map(prisoner => 
                             <option key={prisoner.id} value={prisoner.id}>{prisoner.name}</option>   
                         )
                     }
@@ -43,3 +48,32 @@ export default class PrisonAdminform extends React.Component {
         )
     }
 }
+
+PrisonAdminForm.propTypes = {
+    prisoner : PT.arrayOf(PT.shape({
+        id: PT.number.isRequired,
+        name: PT.string.isRequired,
+        id_number: PT.number.isRequired,
+        prison_id: PT.number.isRequired,
+    })),
+    selectedPrisonerId: PT.number,
+    selectPrisonerId: PT.func.isRequired,
+    addPrisoner: PT.func.isRequired,
+}
+
+function mapStateToProps(state) {
+    return {
+        prisoners: state.prisoners,
+        selectedPrisonerId: state.selectedPrisonerId,
+    }
+  }
+  
+  function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        selectPrisonerId,
+        addPrisoner,
+    }, dispatch);
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(PrisonAdminForm); 
+  
