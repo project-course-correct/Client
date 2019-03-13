@@ -4,12 +4,8 @@ export function prisons(state = [], action) {
     switch (action.type) {
         case types.GET_PRISONS:
             return action.payload;
-        case types.ADD_PRISONER:
-            return //todo;
-        case types.DELETE_PRISONER:
-            return //todo;
-        case types.EDIT_PRISONER:
-            return //todo;
+        case types.SIGN_UP:
+            return state.concat(action.payload);
         default:
             return state;
     }
@@ -46,12 +42,12 @@ export function error(state = null, action) {
     }
 }
 
-export function authedId(state = "", action) {
+export function authedPrison(state = {}, action) {
     switch (action.type) {
         case types.LOGIN:
-            return action.payload;
+            return action.payload.prison;
         case types.LOGOUT:
-            return "";
+            return {};
         default:
             return state;
     }

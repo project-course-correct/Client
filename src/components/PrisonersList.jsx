@@ -6,6 +6,10 @@ import PT from 'prop-types';
 import Prisoner from './Prisoner';
 
 export class PrisonersList extends React.Component{
+    onDelete(event) {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div className="prisoners-list">
@@ -14,6 +18,7 @@ export class PrisonersList extends React.Component{
                         <Prisoner key={prisoner.id} prisoner={prisoner}/>
                     ))
                 }
+                <button>Delete Account</button>
             </div>
         )
     }

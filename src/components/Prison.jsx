@@ -3,7 +3,11 @@ import PT from 'prop-types';
 
 export default function Prison({ prison }) {
     return (
-        <div>{prison.location}</div>
+        <div>
+            <h2>{prison.location}</h2>
+            <p>{prison.population}</p>
+            <p>{prison.zipcode}</p>
+        </div>
     )
 }
 

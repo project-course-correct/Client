@@ -45,8 +45,22 @@ export const login = newLogin => dispatch => {
     axios.post("https://course-correct-backend.herokuapp.com/api/auth/login", newLogin)
         .then(res => {
             dispatch({ type: types.LOGIN, payload: res.data })
+            localStorage.setItem('token', res.data.token);
             dispatch(spinnerOff());
             console.log(res.data);
+        })
+        .catch(err => {
+            dispatch({ type: types.ERROR, payload: err.message })
+            console.log(err.message);
+        })
+}
+
+export const deleteAccount = id => dispatch => {
+    dispatch(spinnerOn());
+    axios.delete(`https://course-correct-backend.herokuapp.com/api/prisons/${id}`)
+        .then(res => {
+            dispatch({ type: types.DELETE_ACCOUNT, payload: res.data })
+            dispatch(spinnerOff());
         })
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })

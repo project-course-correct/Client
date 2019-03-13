@@ -66,14 +66,14 @@ function mapStateToProps(state) {
         prisoners: state.prisoners,
         selectedPrisonerId: state.selectedPrisonerId,
     }
-  }
+}
   
-  function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         selectPrisonerId,
         addPrisoner,
     }, dispatch);
-  }
+}
   
-  export default connect(mapStateToProps, mapDispatchToProps)(PrisonAdminForm); 
+export default connect(mapStateToProps, mapDispatchToProps)(PrisonAdminForm); 
   
