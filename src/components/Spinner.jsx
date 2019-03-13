@@ -6,6 +6,9 @@ const StyledSpinner = styled.div`
   .spinner {
     display: ${props => (props.spinnerOn ? "block" : "none")};
   }
+  .children {
+    display: ${props => (props.spinnerOn ? "none" : "block")};
+  }
 `;
 
 export class Spinner extends React.Component {
@@ -13,6 +16,7 @@ export class Spinner extends React.Component {
     return (
       <StyledSpinner spinnerOn={this.props.loading}>
         <div className='spinner'>Please Wait...</div>
+        <div className='children'>{this.props.children}</div>
       </StyledSpinner>
     );
   }

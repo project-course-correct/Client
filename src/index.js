@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
     error: reducers.error,
     authedId: reducers.authedId,
     selectedPrisonerId: reducers.selectedPrisonerId,
+    prisoners: reducers.prisoners,
   });
 
 const store = createStore(

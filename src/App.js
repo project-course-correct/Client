@@ -20,31 +20,33 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <Spinner />
-        <NavBar />
+        <Spinner>
+          <NavBar />
 
-        <Route exact path="/prisons" render={Prisons} />
-        {
-          this.props.prisons.map(prison => (
-            <Route 
-              key={prison.id} 
-              path={`/prisons/${prison.location}`} 
-              render={pr => <Prisoners prison={prison} {...pr} />}
-            />
-          ))
-        }
-        <Route 
-          path="/prisoner_form" 
-          render={pr => 
-            <PrisonAdminform 
-              {...pr} 
-              prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
-              selectedPrisonerId={this.props.selectedPrisonerId}
-              selectPrisonerId={this.props.selectPrisonerId}
-              addPrisoner={this.props.addPrisoner}
-            />
-          } 
-        />
+          <Route exact path="/prisons" component={Prisons} />
+          {
+            this.props.prisons.map(prison => (
+              <Route 
+                key={prison.id} 
+                path={`/prisons/${prison.location}`} 
+                component={Prisoners}
+              />
+            ))
+          }
+          <Route 
+            path="/prisoner_form" 
+            render={pr => 
+              <PrisonAdminform 
+                {...pr} 
+                prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
+                selectedPrisonerId={this.props.selectedPrisonerId}
+                selectPrisonerId={this.props.selectPrisonerId}
+                addPrisoner={this.props.addPrisoner}
+              />
+            } 
+          />
+        </Spinner>
+          
       </div>
     );
   }
