@@ -5,6 +5,7 @@ import PrisonsList from '../components/PrisonsList';
 
 export class Prisons extends React.Component {
     render() {
+        console.log(this.props.prisons);
         return (
             <div className="prisons-container">
                 <PrisonsList prisons={this.props.prisons} />

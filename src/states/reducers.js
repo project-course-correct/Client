@@ -15,6 +15,17 @@ export function prisons(state = [], action) {
     }
 }
 
+export function prisoners(state = [], action) {
+    switch (action.type) {
+        case types.GET_PRISONERS_BY_PRISON_ID:
+            return action.payload;
+        case types.LOGOUT:
+            return [];
+        default:
+         return state;
+    }
+}
+
 export function loading(state = false, action) {
     switch (action.type) {
         case types.SPINNER_OFF:

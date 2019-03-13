@@ -7,7 +7,8 @@ import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
 import Prisoners from './views/Prisoners';
 import PrisonAdminform from './views/PrisonAdminForm';
-import { getPrisons, selectPrisonerId, addPrisoner } from './states/actionCreators';
+import { getPrisons, selectPrisonerId, addPrisoner, getPrisonersByPrisonId } from './states/actionCreators';
+import Spinner from './components/Spinner';
 
 
 
@@ -19,30 +20,31 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-          <NavBar />
+        <Spinner />
+        <NavBar />
 
-          <Route exact path="/prisons" component={Prisons} />
-          {
-            this.props.prisons.map(prison => (
-              <Route 
-                key={prison.id} 
-                path={`/prisons/${prison.name}`} 
-                render={pr => <Prisoners prison={prison} {...pr} />}
-              />
-            ))
-          }
-          <Route 
-            path="/prisoner_form" 
-            render={pr => 
-              <PrisonAdminform 
-                {...pr} 
-                prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
-                selectedPrisonerId={this.props.selectedPrisonerId}
-                selectPrisonerId={this.props.selectPrisonerId}
-                addPrisoner={this.props.addPrisoner}
-              />
-            } 
-          />
+        <Route exact path="/prisons" render={Prisons} />
+        {
+          this.props.prisons.map(prison => (
+            <Route 
+              key={prison.id} 
+              path={`/prisons/${prison.location}`} 
+              render={pr => <Prisoners prison={prison} {...pr} />}
+            />
+          ))
+        }
+        <Route 
+          path="/prisoner_form" 
+          render={pr => 
+            <PrisonAdminform 
+              {...pr} 
+              prison={this.props.prisons.find(prison => prison.id === parseInt(this.props.authedId))} 
+              selectedPrisonerId={this.props.selectedPrisonerId}
+              selectPrisonerId={this.props.selectPrisonerId}
+              addPrisoner={this.props.addPrisoner}
+            />
+          } 
+        />
       </div>
     );
   }
@@ -61,6 +63,7 @@ function mapDispatchToProps(dispatch) {
       getPrisons,
       selectPrisonerId,
       addPrisoner,
+      getPrisonersByPrisonId,
   }, dispatch);
 }
 

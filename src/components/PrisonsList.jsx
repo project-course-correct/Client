@@ -8,7 +8,7 @@ export default function PrisonsList ({ prisons }) {
         <div className="prisons-list">
             {
                 prisons.map(prison => (
-                    <NavLink key={prison.id} to={`/prisons/${prison.name}`}>
+                    <NavLink key={prison.id} to={`/prisons/${prison.location}`}>
                         <Prison prison={prison}/>
                     </NavLink>
                 ))
