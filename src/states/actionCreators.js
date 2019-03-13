@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getPrisons = () => dispatch => {
     dispatch(spinnerOn());
-    axios.get("http://localhost:5000/api/prisons/")
+    axios.get("https://course-correct-backend.herokuapp.com/api/prisons")
         .then(res => {
             dispatch({ type: types.GET_PRISONS, payload: res.data });
             dispatch(spinnerOff());
@@ -16,7 +16,7 @@ export const getPrisons = () => dispatch => {
 
 export const getPrisonersByPrisonId = id => dispatch => {
     dispatch(spinnerOn());
-    axios.get(`http://localhost:5000/api/prisons/${id}/prisoners`)
+    axios.get(`https://course-correct-backend.herokuapp.com/api/prisons/${id}/prisoners`)
         .then(res => {
             dispatch({ type: types.GET_PRISONERS_BY_PRISON_ID, payload: res.data });
             dispatch(spinnerOff());
@@ -29,10 +29,24 @@ export const getPrisonersByPrisonId = id => dispatch => {
 
 export const signUp = newPrison => dispatch => {
     dispatch(spinnerOn());
-    axios.post("http://localhost:5000/api/auth/register", newPrison)
+    axios.post("https://course-correct-backend.herokuapp.com/api/auth/register", newPrison)
         .then(res => {
             dispatch({ type: types.SIGN_UP, payload: res.data });
             dispatch(spinnerOff());
+        })
+        .catch(err => {
+            dispatch({ type: types.ERROR, payload: err.message })
+            console.log(err.message);
+        })
+}
+
+export const login = newLogin => dispatch => {
+    dispatch(spinnerOn());
+    axios.post("https://course-correct-backend.herokuapp.com/api/auth/login", newLogin)
+        .then(res => {
+            dispatch({ type: types.LOGIN, payload: res.data })
+            dispatch(spinnerOff());
+            console.log(res.data);
         })
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })

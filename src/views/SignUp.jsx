@@ -41,7 +41,7 @@ export class SignUp extends React.Component {
                 <input ref={this.passwordRef} type="password" placeholder="password" />
                 <input ref={this.zipcodeRef} type="number" placeholder="zipcode" />
                 <input ref={this.populationRef} type="number" placeholder="population" />
-                <button>Sign Up</button>
+                <button onClick={e => this.onSignUp(e)}>Sign Up</button>
             </form>
         )
     }
