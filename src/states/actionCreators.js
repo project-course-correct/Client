@@ -27,6 +27,19 @@ export const getPrisonersByPrisonId = id => dispatch => {
         })
 }
 
+export const signUp = newPrison => dispatch => {
+    dispatch(spinnerOn());
+    axios.post("http://localhost:5000/api/auth/register", newPrison)
+        .then(res => {
+            dispatch({ type: types.SIGN_UP, payload: res.data });
+            dispatch(spinnerOff());
+        })
+        .catch(err => {
+            dispatch({ type: types.ERROR, payload: err.message })
+            console.log(err.message);
+        })
+}
+
 export const addPrisoner = (prisoner, id) => dispatch => {
     dispatch(spinnerOn());
     axios.post(`http://demo4752238.mockable.io/prisons/${id}`, prisoner)

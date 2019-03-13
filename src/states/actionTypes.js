@@ -9,3 +9,4 @@ export const LOGOUT = "LOGOUT";
 export const ERROR = "ERROR";
 export const SELECT_PRISONER_ID = "SELECT_PRISONER_ID";
 export const GET_PRISONERS_BY_PRISON_ID = "GET_PRISONERS_BY_PRISON_ID";
+export const SIGN_UP = "SIGN_UP";

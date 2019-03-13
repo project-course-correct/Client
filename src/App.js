@@ -9,6 +9,7 @@ import Prisoners from './views/Prisoners';
 import PrisonAdminForm from './views/PrisonAdminForm';
 import { getPrisons, selectPrisonerId, addPrisoner,} from './states/actionCreators';
 import Spinner from './components/Spinner';
+import SignUp from './views/SignUp';
 
 
 
@@ -34,6 +35,7 @@ export class App extends Component {
             ))
           }
           <Route path={`/prisoner_form`} component={PrisonAdminForm} />
+          <Route path="/sign_up" component={SignUp} />
         </Spinner>
           
       </div>
