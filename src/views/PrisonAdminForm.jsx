@@ -35,7 +35,6 @@ export class PrisonAdminForm extends React.Component {
     }
 
     onEditPrisoner(event) {
-        //to finish
         event.preventDefault();
         const nameInput = this.nameRef.current;
         const skillInput = this.skillRef.current;
@@ -47,7 +46,7 @@ export class PrisonAdminForm extends React.Component {
             id_number: idInput.value,
         }
 
-        this.props.editPrisoner(newPrisoner);
+        this.props.editPrisoner(this.props.selectedPrisonerId, newPrisoner);
         nameInput.value = "";
         skillInput.value = "";
         idInput.value = 0;

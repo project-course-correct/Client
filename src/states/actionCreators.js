@@ -116,8 +116,17 @@ export const addPrisoner = prisoner => dispatch => {
 }
 
 export const editPrisoner = (id, newPrisoner) => dispatch => {
-    //to do
     dispatch(spinnerOn());
+    axios().put(`https://course-correct-backend.herokuapp.com/api/prisoners/${id}`, newPrisoner)
+        .then(res => {
+            dispatch({ type: types.EDIT_PRISONER, payload: res.data })
+            dispatch(spinnerOff());
+        })
+        .catch(err => {
+            dispatch({ type: types.ERROR, payload: err.message })
+            console.log(err.message);
+            dispatch(spinnerOff());
+        })
 }
 
 export const deletePrisoner = id => dispatch => {
