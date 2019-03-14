@@ -13,14 +13,17 @@ const rootReducer = combineReducers({
     prisons: reducers.prisons,
     loading: reducers.loading,
     error: reducers.error,
-    authed: reducers.authed
+    selectedPrisonerId: reducers.selectedPrisonerId,
+    prisoners: reducers.prisoners,
+    authedPrison: reducers.authedPrison,
   });
 
 const store = createStore(
     rootReducer,
     {},
     compose(
-      applyMiddleware(thunk))
+      applyMiddleware(thunk)
+    ),
   );
 
 ReactDOM.render(

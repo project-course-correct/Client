@@ -1,11 +1,43 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PT from 'prop-types';
 
-export class PrisonersList {
+
+import Prisoner from './Prisoner';
+
+export class PrisonersList extends React.Component{
+    onDelete(event) {
+        event.preventDefault();
+    }
+
     render() {
         return (
-            <div className="prisoner-list">
-                
+            <div className="prisoners-list">
+                {
+                    this.props.prisoners.map(prisoner => (
+                        <Prisoner key={prisoner.id} prisoner={prisoner}/>
+                    ))
+                }
+                <button>Delete Account</button>
             </div>
         )
     }
 }
+
+PrisonersList.propTypes = {
+    prisoners: PT.arrayOf(PT.shape({
+        id: PT.number.isRequired,
+        name: PT.string.isRequired,
+        id_number: PT.number.isRequired,
+        prison_id: PT.number.isRequired,
+    }).isRequired).isRequired,
+}
+
+function mapStateToProps(state) {
+    return {
+        prisoners: state.prisoners
+    }
+}
+  
+export default connect(mapStateToProps)(PrisonersList); 
+  
