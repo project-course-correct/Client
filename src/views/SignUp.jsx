@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import PT from 'prop-types';
+import { Link } from 'react-router-dom';
+
 
 import { signUp } from '../states/actionCreators';
 
@@ -11,9 +13,7 @@ export class SignUp extends React.Component {
     zipcodeRef = React.createRef();
     populationRef = React.createRef();
 
-    onSignUp(event) {
-        event.preventDefault();
-
+    onSignUp() {
         const locInput = this.locationRef.current;
         const pswInput = this.passwordRef.current;
         const zipInput = this.zipcodeRef.current;
@@ -41,7 +41,7 @@ export class SignUp extends React.Component {
                 <input ref={this.passwordRef} type="password" placeholder="password" />
                 <input ref={this.zipcodeRef} type="number" placeholder="zipcode" />
                 <input ref={this.populationRef} type="number" placeholder="population" />
-                <button onClick={e => this.onSignUp(e)}>Sign Up</button>
+                <Link to="/prisons" onClick={e => this.onSignUp(e)}>Sign Up</Link>
             </form>
         )
     }

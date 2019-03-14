@@ -13,12 +13,14 @@ export function prisons(state = [], action) {
     }
 }
 
-export function prisoners(state = [], action) {
+export function prisoners(state = null, action) {
     switch (action.type) {
         case types.GET_PRISONERS_BY_PRISON_ID:
             return action.payload;
         case types.GET_PRISONERS:
             return action.payload;
+        case types.CLEAR_PRISONERS:
+            return null;
         case types.LOGOUT:
             return [];
         default:
@@ -63,6 +65,15 @@ export function selectedPrisonerId(state = null, action) {
             return action.payload;
         case types.LOGOUT:
             return "";
+        default:
+            return state;
+    }
+}
+
+export function skills(state = null, action) {
+    switch (action.type) {
+        case types.GET_PRISONER_SKILLS:
+            return action.payload;
         default:
             return state;
     }

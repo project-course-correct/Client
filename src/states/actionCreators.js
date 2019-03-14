@@ -11,11 +11,13 @@ export const getPrisons = () => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message });
             console.log(err.message);
+            dispatch(spinnerOff());
         })
 }
 
 export const getPrisonersByPrisonId = id => dispatch => {
     dispatch(spinnerOn());
+    dispatch({ type: types.CLEAR_PRISONERS })
     axios().get(`https://course-correct-backend.herokuapp.com/api/prisons/${id}/prisoners`)
         .then(res => {
             dispatch({ type: types.GET_PRISONERS_BY_PRISON_ID, payload: res.data });
@@ -24,6 +26,7 @@ export const getPrisonersByPrisonId = id => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message });
             console.log(err.message);
+            dispatch(spinnerOff());
         })
 }
 
@@ -37,6 +40,21 @@ export const getPrisoners = () => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message });
             console.log(err.message);
+            dispatch(spinnerOff());
+        })
+}
+
+export const getPrisonerSkills = id => dispatch => {
+    dispatch(spinnerOn());
+    axios().get(`https://course-correct-backend.herokuapp.com/api/prisoners/${id}`)
+        .then(res => {
+            dispatch({ type: types.GET_PRISONER_SKILLS, payload: res.data.skills });
+            dispatch(spinnerOff());
+        })
+        .catch(err => {
+            dispatch({ type: types.ERROR, payload: err.message });
+            console.log(err.message);
+            dispatch(spinnerOff());
         })
 }
 
@@ -50,6 +68,7 @@ export const signUp = newPrison => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })
             console.log(err.message);
+            dispatch(spinnerOff());
         })
 }
 
@@ -64,6 +83,7 @@ export const login = newLogin => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })
             console.log(err.message);
+            dispatch(spinnerOff());
         })
 }
 
@@ -77,6 +97,7 @@ export const deleteAccount = id => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })
             console.log(err.message);
+            dispatch(spinnerOff());
         })
 }
 
@@ -90,6 +111,7 @@ export const addPrisoner = prisoner => dispatch => {
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })
             console.log(err);
+            dispatch(spinnerOff());
         })
 }
 
