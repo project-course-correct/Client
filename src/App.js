@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import Prisons from './views/Prisons';
 import Prisoners from './views/Prisoners';
 import PrisonAdminForm from './views/PrisonAdminForm';
-import { getPrisons, selectPrisonerId, addPrisoner,} from './states/actionCreators';
+import { getPrisons, selectPrisonerId, login } from './states/actionCreators';
 import Spinner from './components/Spinner';
 import SignUp from './views/SignUp';
 import Login from './views/Login';
@@ -17,6 +17,15 @@ import Login from './views/Login';
 export class App extends Component {
   componentDidMount() {
     this.props.getPrisons();
+    if (localStorage.getItem('token')) {
+      const location = localStorage.getItem('location');
+      const password = localStorage.getItem('password');
+      const newLogin = {
+        location,
+        password,
+    }
+    this.props.login(newLogin);
+    }
   }
 
   render() {
@@ -31,7 +40,7 @@ export class App extends Component {
               <Route 
                 key={prison.id} 
                 path={`/prisons/${prison.location}`} 
-                component={Prisoners}
+                render={pr => <Prisoners {...pr} id={prison.id} />}
               />
             ))
           }
@@ -50,6 +59,7 @@ function mapStateToProps(state) {
       prisons: state.prisons,
       authedId: state.authedId,
       selectedPrisonerId: state.selectedPrisonerId,
+      authedPrison: state.authedPrison,
   }
 }
 
@@ -57,7 +67,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
       getPrisons,
       selectPrisonerId,
-      addPrisoner,
+      login,
   }, dispatch);
 }
 
