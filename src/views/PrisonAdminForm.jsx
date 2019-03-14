@@ -54,9 +54,8 @@ export class PrisonAdminForm extends React.Component {
     }
 
     onDeletePrisoner(event) {
-        // to finish
         event.preventDefault();
-        this.props.deletePrisoner();
+        this.props.deletePrisoner(this.props.selectedPrisonerId);
     }
 
     render() {

@@ -6,8 +6,6 @@ export function prisons(state = [], action) {
             return action.payload;
         case types.SIGN_UP:
             return state.concat(action.payload);
-        case types.DELETE_ACCOUNT:
-            return action.payload;
         default:
             return state;
     }
@@ -63,6 +61,8 @@ export function selectedPrisonerId(state = null, action) {
     switch (action.type) {
         case types.SELECT_PRISONER_ID:
             return action.payload;
+        case types.DELETE_PRISONER:
+            return "";
         case types.LOGOUT:
             return "";
         default:
