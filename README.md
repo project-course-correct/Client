@@ -14,7 +14,7 @@ In the project directory, you can run:
 
 
 # Landing Page
-[Landing Pages Readme](https://github.com/project-course-correct/Landing-Page)
+[Landing Page Readme](https://github.com/project-course-correct/Landing-Page)
 
 # Backend
 Runs the app in the development mode.<br>
