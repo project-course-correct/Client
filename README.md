@@ -13,8 +13,7 @@ In the project directory, you can run:
 - Styled Components - Styling
 
 
-# Landing Pages
-### `npm start`
+# Landing Page
 [Landing Pages Readme](https://github.com/project-course-correct/Landing-Page)
 
 # Backend
