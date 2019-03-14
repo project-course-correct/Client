@@ -1,5 +1,5 @@
 # Course Correct Frontend
-
+## [View Live](https://course-correct-frontend.netlify.com/)
 
 # About
 This app allows prison management to broadcast the skills of inmates to make better use of their time using their skills to make a wage and becoming more employable upon re-entry into society.
