@@ -3,27 +3,54 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import PT from 'prop-types';
 
-import { selectPrisonerId, addPrisoner } from '../states/actionCreators'
+import { selectPrisonerId, addPrisoner, editPrisoner, deletePrisoner } from '../states/actionCreators'
 
 export class PrisonAdminForm extends React.Component {
     nameRef = React.createRef();
     skillRef = React.createRef(); 
+    idNumberRef = React.createRef();
 
     onAddPrisoner(event) {
         event.preventDefault();
         const nameInput = this.nameRef.current;
         const skillInput = this.skillRef.current;
+        const idInput = this.idNumberRef.current;
 
-        const newSkills = skillInput.value.split(",");
         const newPrisoner = {
             name: nameInput.value,
-            skills: newSkills,
+            skills: skillInput.value,
+            id_number: idInput.value,
         }
 
         this.props.addPrisoner(newPrisoner);
-
         nameInput.value = "";
         skillInput.value = "";
+        idInput.value = 0;
+    }
+
+    onEditPrisoner(event) {
+        //to finish
+        event.preventDefault();
+        const nameInput = this.nameRef.current;
+        const skillInput = this.skillRef.current;
+        const idInput = this.idNumberRef.current;
+
+        const newPrisoner = {
+            name: nameInput.value,
+            skills: skillInput.value,
+            id_number: idInput.value,
+        }
+
+        this.props.editPrisoner(newPrisoner);
+        nameInput.value = "";
+        skillInput.value = "";
+        idInput.value = 0;
+    }
+
+    onDeletePrisoner(event) {
+        // to finish
+        event.preventDefault();
+        this.props.deletePrisoner();
     }
 
     render() {
@@ -43,7 +70,10 @@ export class PrisonAdminForm extends React.Component {
                 </select>
                 <input type="text" placeholder="name" ref={this.nameRef}/>
                 <input type="text" placeholder="skills" ref={this.skillRef}/>
+                <input type="number" placeholder="id number" ref={this.idNumberRef}/>
                 <button onClick={e => this.onAddPrisoner(e)}>Add Prisoner</button>
+                <button onClick={e => this.onEditPrisoner(e)}>Edit Prisoner</button>
+                <button onClick={e => this.onDeletePrisoner(e)}>Delete Prisoner</button>
             </form>
         )
     }
@@ -72,6 +102,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         selectPrisonerId,
         addPrisoner,
+        editPrisoner,
+        deletePrisoner
     }, dispatch);
 }
   

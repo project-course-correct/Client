@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import PT from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { login } from '../states/actionCreators';
 
@@ -9,9 +10,7 @@ export class Login extends React.Component {
     locationRef = React.createRef();
     passwordRef = React.createRef();
 
-    onLogin(event) {
-        event.preventDefault();
-
+    onLogin() {
         const locInput = this.locationRef.current;
         const pswInput = this.passwordRef.current;
 
@@ -31,7 +30,7 @@ export class Login extends React.Component {
             <form>
                 <input ref={this.locationRef} type="text" placeholder="location" />
                 <input ref={this.passwordRef} type="password" placeholder="password" />
-                <button onClick={e => this.onLogin(e)}>Login</button>
+                <Link to="/prisons" onClick={() => this.onLogin()}>Login</Link>
             </form>
         )
     }
