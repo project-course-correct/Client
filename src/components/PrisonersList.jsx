@@ -1,13 +1,20 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PT from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
-
+import { deleteAccount, logOut, getPrisonersByPrisonId } from '../states/actionCreators';
 import Prisoner from './Prisoner';
 
 export class PrisonersList extends React.Component{
+    componentDidMount() {
+        this.props.getPrisonersByPrisonId(this.props.id);
+    }
     onDelete(event) {
         event.preventDefault();
+        this.props.deleteAccount(this.props.authedPrison.id);
+        this.props.logOut();
     }
 
     render() {
@@ -18,7 +25,7 @@ export class PrisonersList extends React.Component{
                         <Prisoner key={prisoner.id} prisoner={prisoner}/>
                     ))
                 }
-                <button>Delete Account</button>
+                <Link to="/prisons" onClick={e => this.onDelete(e)}>Delete Account</Link>
             </div>
         )
     }
@@ -35,9 +42,18 @@ PrisonersList.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        prisoners: state.prisoners
+        prisoners: state.prisoners,
+        authedPrison: state.authedPrison,
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        deleteAccount,
+        logOut,
+        getPrisonersByPrisonId
+    }, dispatch);
+}
   
-export default connect(mapStateToProps)(PrisonersList); 
+export default connect(mapStateToProps, mapDispatchToProps)(PrisonersList); 
   

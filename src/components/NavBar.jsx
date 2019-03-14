@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import PT from 'prop-types';
 
-import { logOut } from '../states/actionCreators';
+import { logOut, getPrisonersByPrisonId } from '../states/actionCreators';
 
 export class NavBar extends React.Component {
     onLogOut(event) {
@@ -13,6 +13,8 @@ export class NavBar extends React.Component {
         localStorage.clear();
     }
 
+    
+
     render() {
         return (
             <nav>
@@ -20,7 +22,7 @@ export class NavBar extends React.Component {
                 {
                     localStorage.getItem('token')
                     ?   <>
-                            <NavLink to={`/prisons/${this.props.authedPrison.location}`}>My Prison</NavLink>
+                            <NavLink onClick={() => this.props.getPrisonersByPrisonId(this.props.authedPrison.id)} to={`/prisons/${this.props.authedPrison.location}`}>My Prison</NavLink>
                             <NavLink to="/prisoner_form">Update Prisoners</NavLink>
                             <NavLink onClick={e => this.onLogOut(e)} to="/">LogOut</NavLink>
                         </>
@@ -36,11 +38,11 @@ export class NavBar extends React.Component {
 
 NavBar.propTypes = {
     authedPrison: PT.shape({
-        id: PT.number.isRequired,
-        location: PT.string.isRequired,
-        population: PT.number.isRequired,
-        zipcode: PT.number.isRequired,
-    }).isRequired,
+        id: PT.number,
+        location: PT.string,
+        population: PT.number,
+        zipcode: PT.number,
+    }),
 }
 
 function mapStateToProps(state) {
@@ -52,6 +54,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         logOut,
+        getPrisonersByPrisonId
     }, dispatch);
 }
   

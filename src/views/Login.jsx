@@ -20,6 +20,8 @@ export class Login extends React.Component {
         }
 
         this.props.login(newLogin);
+        localStorage.setItem("location", locInput.value);
+        localStorage.setItem("password", pswInput.value);
 
         locInput.value = "";
         pswInput.value = "";

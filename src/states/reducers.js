@@ -6,6 +6,8 @@ export function prisons(state = [], action) {
             return action.payload;
         case types.SIGN_UP:
             return state.concat(action.payload);
+        case types.DELETE_ACCOUNT:
+            return action.payload;
         default:
             return state;
     }
@@ -14,6 +16,8 @@ export function prisons(state = [], action) {
 export function prisoners(state = [], action) {
     switch (action.type) {
         case types.GET_PRISONERS_BY_PRISON_ID:
+            return action.payload;
+        case types.GET_PRISONERS:
             return action.payload;
         case types.LOGOUT:
             return [];

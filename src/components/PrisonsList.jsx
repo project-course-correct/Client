@@ -1,10 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
 import PT from 'prop-types';
-
-import { getPrisonersByPrisonId } from '../states/actionCreators';
 
 import Prison from './Prison';
 
@@ -17,7 +14,6 @@ export class  PrisonsList extends React.Component {
                     this.props.prisons.map(prison => (
                         <NavLink 
                             key={prison.id} 
-                            onClick={() => this.props.getPrisonersByPrisonId(prison.id)} 
                             to={`/prisons/${prison.location}`}
                         >
                             <Prison prison={prison}/>
@@ -44,10 +40,6 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getPrisonersByPrisonId,
-    }, dispatch);
-  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrisonsList);
+
+export default connect(mapStateToProps)(PrisonsList);

@@ -27,6 +27,19 @@ export const getPrisonersByPrisonId = id => dispatch => {
         })
 }
 
+export const getPrisoners = () => dispatch => {
+    dispatch(spinnerOn());
+    axios().get(`https://course-correct-backend.herokuapp.com/api/prisoners`)
+        .then(res => {
+            dispatch({ type: types.GET_PRISONERS, payload: res.data });
+            dispatch(spinnerOff());
+        })
+        .catch(err => {
+            dispatch({ type: types.ERROR, payload: err.message });
+            console.log(err.message);
+        })
+}
+
 export const signUp = newPrison => dispatch => {
     dispatch(spinnerOn());
     axios().post("https://course-correct-backend.herokuapp.com/api/auth/register", newPrison)
@@ -47,7 +60,6 @@ export const login = newLogin => dispatch => {
             dispatch({ type: types.LOGIN, payload: res.data })
             localStorage.setItem('token', res.data.token);
             dispatch(spinnerOff());
-            console.log(res.data);
         })
         .catch(err => {
             dispatch({ type: types.ERROR, payload: err.message })
@@ -106,13 +118,6 @@ export function spinnerOff() {
 export function logOut() {
     return {
         type: types.LOGOUT,
-    }
-}
-
-export function logIn(newLogin) {
-    return {
-        type: types.LOGIN,
-        payload: newLogin,
     }
 }
 
