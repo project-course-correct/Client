@@ -20,7 +20,7 @@ export class NavBar extends React.Component {
             <nav>
                 <NavLink to="/prisons">Prisons</NavLink>
                 {
-                    localStorage.getItem('token')
+                    this.props.authedPrison
                     ?   <>
                             <NavLink onClick={() => this.props.getPrisonersByPrisonId(this.props.authedPrison.id)} to={`/prisons/${this.props.authedPrison.location}`}>My Prison</NavLink>
                             <NavLink to="/prisoner_form">Update Prisoners</NavLink>

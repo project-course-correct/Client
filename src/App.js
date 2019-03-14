@@ -59,6 +59,7 @@ function mapStateToProps(state) {
       prisons: state.prisons,
       authedId: state.authedId,
       selectedPrisonerId: state.selectedPrisonerId,
+      authedPrison: state.authedPrison,
   }
 }
 

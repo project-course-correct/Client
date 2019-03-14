@@ -46,12 +46,12 @@ export function error(state = null, action) {
     }
 }
 
-export function authedPrison(state = {}, action) {
+export function authedPrison(state = null, action) {
     switch (action.type) {
         case types.LOGIN:
             return action.payload.prison;
         case types.LOGOUT:
-            return {};
+            return null;
         default:
             return state;
     }
